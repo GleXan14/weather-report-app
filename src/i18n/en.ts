@@ -8,7 +8,11 @@ export const locale = {
     },
     LOADING:{
         TITLE: 'Loading...',
-        SUBTITLE: 'If this site doesn\'t load within 10 seconds, try reloading'
+        SUBTITLE: 'If this site doesn\'t load within 10 seconds, try allow access to your location and reload'
+    },
+    GEOLOCATION:{
+        TITLE: 'Geolocation not supported',
+        SUBTITLE: 'Geolocation is not supported by this browser.'
     }
 
 }

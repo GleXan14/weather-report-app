@@ -33,6 +33,7 @@ export default function Main(){
     const [position, setPosition] = useState<any>();
     const todayDate = new Date();
     const [isInitiated, setIsInitiated] = useState<boolean>(false);
+    const [hasGeolocation, setHasGeolocation] = useState<boolean>(true);
 
     useEffect(() => {
         if(!langSaved){
@@ -43,6 +44,8 @@ export default function Main(){
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(getOwnWeather);
+        }else{
+            setHasGeolocation(false);
         } 
     }, []);
 
@@ -259,7 +262,16 @@ export default function Main(){
                 <DailyForecast location={location!} lang={lang} />
             </IF>
 
-            <IF condition={(!weather || weather === undefined)}>
+            <IF condition={(!weather || weather === undefined) && !hasGeolocation}>
+                <Container fluid 
+                className="d-flex justify-content-center align-items-center flex-column"
+                style={{"height": '100vh'}}>
+                    <h1>{Strings[lang].GEOLOCATION.TITLE}</h1>
+                    <p>{Strings[lang].GEOLOCATION.SUBTITLE}</p>
+                </Container>
+            </IF>
+
+            <IF condition={(!weather || weather === undefined) && hasGeolocation}>
                 <Loader lang={lang}></Loader>
             </IF>
         </Container>
