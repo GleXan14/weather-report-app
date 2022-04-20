@@ -1,0 +1,11 @@
+
+$text-color: #fff;
+$bg-color: rgb(79, 79, 204);
+
+.custom-global-bg{
+    background: $bg-color;
+}
+
+.global-text-color{
+    color: $text-color;
+}
